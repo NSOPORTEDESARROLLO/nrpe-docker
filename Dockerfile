@@ -13,10 +13,6 @@ ADD   		files/procps.tgz /usr/src/
 ADD         files/Asterisk-AMI-v0.2.8.tar.gz /tmp/
 
 
-#Directory skel
-RUN			mkdir /custom; \
-			mkdir /plugins; \
-			mkdir /usr/lib/nagios/plugins/nsoporte
 
 
 
@@ -38,6 +34,10 @@ RUN			 apt-get -y install build-essential make sudo python3 python3-pip wget tel
 
 
 
+#Directory skel
+RUN			mkdir /custom; \
+			mkdir /plugins; \
+			mkdir /usr/lib/nagios/plugins/nsoporte
 
 
 
