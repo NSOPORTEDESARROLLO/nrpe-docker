@@ -1,0 +1,31 @@
+#!/bin/bash
+
+plugins_dir=$(ls -A /plugins)
+config_dir=$(ls  /etc/nagios/config.d)
+
+
+for file in $config_dir;do
+
+	if [ ! -f  /custom/$file ];then
+
+	
+	cp  /etc/nagios/config.d/$file /custom/$file
+
+	fi
+
+done
+
+
+chown -R nagios.nagios /custom
+chown -R nagios.nagios /plugins
+
+
+if [ "$plugins_dir" != "" ];then
+
+	chmod +x /plugins/*
+
+fi
+
+
+#Main Process 
+exec /usr/sbin/nrpe -c /etc/nagios/nrpe.cfg -f
