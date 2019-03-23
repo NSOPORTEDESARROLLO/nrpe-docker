@@ -10,7 +10,7 @@ RUN			apt-get update; \
 #Copy Files
 Copy    	files/ns-start /usr/bin/
 ADD   		files/procps.tgz /usr/src/
-ADD         files/Asterisk-AMI-v0.2.8.tar /tmp/
+ADD         files/Asterisk-AMI-v0.2.8.tar.gz /tmp/
 
 
 #Directory skel
@@ -40,6 +40,9 @@ RUN			 apt-get -y install build-essential make sudo python3 python3-pip wget tel
 
 
 
+
+#Permisos
+RUN			chmod +x /usr/bin/ns-start
 
 
 
