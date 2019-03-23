@@ -1,5 +1,5 @@
 FROM		debian:stretch 
-MANTAINER	cnaranjo@nsoporte.com
+MAINTAINER	cnaranjo@nsoporte.com
 
 
 #apt update/upgrade
