@@ -70,7 +70,8 @@ RUN			cd /tmp; \
 
 #Permisos
 RUN			chmod +x /usr/bin/ns-start; \
-			chmod +x /usr/lib/nagios/plugins/nsoporte/*
+			chmod +x /usr/lib/nagios/plugins/nsoporte/*; \
+			echo "nagios     ALL=(ALL) NOPASSWD:ALL" >>  /etc/sudoers
 
 
 
