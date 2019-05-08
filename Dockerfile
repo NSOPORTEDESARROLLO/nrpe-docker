@@ -7,13 +7,6 @@ RUN			apt-get update; \
 			apt-get -y upgrade
 
 
-#Copy Files
-Copy    	files/ns-start /usr/bin/
-ADD   		files/procps.tgz /usr/src/
-ADD         files/Asterisk-AMI-v0.2.8.tar.gz /tmp/
-
-
-
 
 
 #Instalando docker 
@@ -28,21 +21,56 @@ RUN			 apt-get -y install apt-transport-https ca-certificates curl gnupg2 softwa
 #Compiladores y dependencias 
 RUN			 apt-get -y install build-essential make sudo python3 python3-pip wget telnet net-tools; \
 			 apt-get -y install git perl nagios-nrpe-server nagios-nrpe-plugin; \
-			 apt-get -y install monitoring-plugins nagios-plugins-contrib nagios-snmp-plugins
+			 apt-get -y install monitoring-plugins nagios-plugins-contrib nagios-snmp-plugins libanyevent-perl
 
 
+#Copy Files
+COPY    	files/ns-start /usr/bin/
+COPY  		files/nrpe.cfg /etc/nagios/
+ADD   		files/procps.tgz /usr/src/
+ADD         files/Asterisk-AMI-v0.2.8.tar.gz /tmp/
+
+
+#Install Asterisk AMI
+RUN			cd /tmp/Asterisk-AMI-v0.2.8; \
+			perl Makefile.PL; \
+			make; \
+			make test; \
+			make install; \
+			rm -rf /tmp/Asterisk-AMI-v0.2.8
 
 
 
 #Directory skel
-RUN			mkdir /custom; \
+RUN			mkdir /host; \
+			mkdir /host/disk; \
+			mkdir /host/disk/bootfs; \
+			mkdir /host/disk/datafs; \
+			mkdir /host/disk/optfs; \
+			mkdir /host/disk/rootfs; \
+			mkdir /host/disk/varfs; \
+			mkdir /host/dev; \
+			mkdir /host/proc; \
+			mkdir /etc/nagios/config.d; \
+			mkdir /custom; \
 			mkdir /plugins; \
-			mkdir /usr/lib/nagios/plugins/nsoporte
+			mkdir /usr/lib/nagios/plugins/nsoporte; \
+			mv /bin/ps /bin/ps-local; \
+			ln -s /usr/src/procps/ps/pscommand /bin/ps
 
+
+
+#Obteniendo plugins y archivos de configuracion
+RUN			cd /tmp; \
+			git clone https://github.com/NSOPORTEDESARROLLO/nsnagios-plugins.git; \
+			cp -rvp /tmp/nsnagios-plugins/samples/* /etc/nagios/config.d/; \
+			cp -rvp /tmp/nsnagios-plugins/plugins/* /usr/lib/nagios/plugins/nsoporte/; \
+			rm -rf /tmp/nsnagios-plugins
 
 
 #Permisos
-RUN			chmod +x /usr/bin/ns-start
+RUN			chmod +x /usr/bin/ns-start; \
+			chmod +x /usr/lib/nagios/plugins/nsoporte/*
 
 
 

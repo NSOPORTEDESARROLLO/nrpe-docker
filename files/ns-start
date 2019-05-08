@@ -18,6 +18,19 @@ done
 
 chown -R nagios.nagios /custom
 chown -R nagios.nagios /plugins
+chown -R nagios.nagios /etc/nagios/*
+chown -R nagios.nagios /usr/lib/nagios/plugins/nsoporte
+chmod +x /usr/lib/nagios/plugins/nsoporte/*
+
+
+#Check Pid
+if [ -d "/var/run/nagios"];then
+
+	rm -rf /var/run/nagios
+fi
+
+mkdir /var/run/nagios
+chown -R nagios.nagios /var/run/nagios	
 
 
 if [ "$plugins_dir" != "" ];then
