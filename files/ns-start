@@ -24,7 +24,7 @@ chmod +x /usr/lib/nagios/plugins/nsoporte/*
 
 
 #Check Pid
-if [ -d "/var/run/nagios"];then
+if [ -d "/var/run/nagios" ];then
 
 	rm -rf /var/run/nagios
 fi

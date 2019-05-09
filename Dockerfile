@@ -21,7 +21,7 @@ RUN			 apt-get -y install apt-transport-https ca-certificates curl gnupg2 softwa
 #Compiladores y dependencias 
 RUN			 apt-get -y install build-essential make sudo python3 python3-pip wget telnet net-tools; \
 			 apt-get -y install git perl nagios-nrpe-server nagios-nrpe-plugin; \
-			 apt-get -y install monitoring-plugins nagios-plugins-contrib nagios-snmp-plugins libanyevent-perl
+			 apt-get -y install monitoring-plugins nagios-plugins-contrib nagios-snmp-plugins libanyevent-perl nano
 
 
 #Copy Files
