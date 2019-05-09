@@ -41,4 +41,4 @@ fi
 
 
 #Main Process 
-exec /usr/sbin/nrpe -c /etc/nagios/nrpe.cfg -f
+/usr/sbin/nrpe -c /etc/nagios/nrpe.cfg -f
