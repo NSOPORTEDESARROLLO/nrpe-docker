@@ -22,3 +22,14 @@ We used to mount host services on /host container folder ( Proc, dev, and disks 
 
 
 docker run --name nrpe --net=host --privileged --restart=always -v /etc/hostname:/etc/hostname:ro -v /etc/localtime:/etc/localtime:ro -v /proc:/host/proc -v /:/host/disk/rootfs -v /tmp:/tmp -v /data/etc/nrpe/custom:/custom -v /data/etc/nrpe/plugins:/plugins -v /var/run/utmp:/var/run/utmp:ro -v /var/run/docker.sock:/var/run/docker.sock -d nsoporte/nrpe
+
+## Custom plugins:
+
+check_asterisk
+check_calls_trunk.pl
+check_cpu
+check_dirsize.sh
+check_docker
+check_drbd
+check_freepbx_enabled
+check_ram
