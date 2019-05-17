@@ -68,10 +68,21 @@ RUN			cd /tmp; \
 			rm -rf /tmp/nsnagios-plugins
 
 
+#Plugins para el host
+RUN			mkdir /opt/host_plugins; \
+			cd /opt/host_plugins; \
+			wget "https://raw.githubusercontent.com/HariSekhon/Nagios-Plugins/master/check_yum.py" -O check_yum.py; \
+			cp /usr/lib/nagios/plugins/check_apt /opt/host_plugins	
+
+
+
+
 #Permisos
 RUN			chmod +x /usr/bin/ns-start; \
 			chmod +x /usr/lib/nagios/plugins/nsoporte/*; \
 			echo "nagios     ALL=(ALL) NOPASSWD:ALL" >>  /etc/sudoers
+
+
 
 
 

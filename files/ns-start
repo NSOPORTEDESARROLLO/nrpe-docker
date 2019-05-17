@@ -1,6 +1,6 @@
 #!/bin/bash
 
-plugins_dir=$(ls -A /plugins)
+plugins_dir=$(ls /opt/host_plugins)
 config_dir=$(ls  /etc/nagios/config.d)
 
 
@@ -21,6 +21,7 @@ chown -R nagios.nagios /plugins
 chown -R nagios.nagios /etc/nagios/*
 chown -R nagios.nagios /usr/lib/nagios/plugins/nsoporte
 chmod +x /usr/lib/nagios/plugins/nsoporte/*
+chmod +x /plugins/*
 
 
 #Check Pid
@@ -33,11 +34,17 @@ mkdir /var/run/nagios
 chown -R nagios.nagios /var/run/nagios	
 
 
-if [ "$plugins_dir" != "" ];then
+for plugin in $plugins_dir;do
 
-	chmod +x /plugins/*
+	if [ ! -f  /plugins/$plugin ];then
 
-fi
+	
+	cp  /opt/host_plugins/$plugin /plugins
+	chmod +x /plugins/$plugin
+
+	fi
+
+done
 
 
 #Main Process 

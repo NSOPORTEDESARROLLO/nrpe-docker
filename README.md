@@ -25,11 +25,12 @@ docker run --name nrpe --net=host --privileged --restart=always -v /etc/hostname
 
 ## Custom plugins:
 
-check_asterisk
-check_calls_trunk.pl
-check_cpu
-check_dirsize.sh
-check_docker
-check_drbd
-check_freepbx_enabled
-check_ram
+- check_asterisk
+- check_calls_trunk.pl
+- check_cpu
+- check_dirsize.sh
+- check_docker
+- check_drbd
+- check_freepbx_enabled
+- check_ram
+- check_yum.pl (https://raw.githubusercontent.com/HariSekhon/Nagios-Plugins/master/check_yum.py)
