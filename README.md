@@ -18,10 +18,7 @@ We used to mount host services on /host container folder ( Proc, dev, and disks 
 - /var/run/utmp: This file has logged users information 
 - /var/run/docker.sock: Docker Socket to containers monitoring
 
-## Examples:
 
-
-docker run --name nrpe --net=host --privileged --restart=always -v /etc/hostname:/etc/hostname:ro -v /etc/localtime:/etc/localtime:ro -v /proc:/host/proc -v /:/host/rootfs -v /tmp:/tmp -v /data/apps/nrpe/custom:/custom -v /data/apps/nrpe/plugins:/plugins -v /var/run/utmp:/var/run/utmp:ro -v /var/run/docker.sock:/var/run/docker.sock -d nsoporte/nrpe
 
 ## Custom plugins:
 
